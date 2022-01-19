@@ -5,11 +5,15 @@ module.exports = router;
 
 //Items CRUD
 
+/* 
+
+*/
+
 //Read All
 router.get('/', async (req, res, next) => {
   try {
-    const allProducts = await Item.findAll();
-    res.json(allProducts);
+    const allItems = await Item.findAll();
+    res.json(allItems);
   } catch (error) {
     next(error);
   }
@@ -19,12 +23,35 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   const { name, quantity, price } = req.body;
   try {
-    const newProduct = await Item.create({
+    const newItem = await Item.create({
       name: name,
       quantity: quantity,
       price: price,
     });
-    res.json(newProduct);
+    res.json(newItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Update
+router.put('/:itemId', async (req, res, next) => {
+  try {
+    const { itemId } = req.params;
+    const item = await Item.findByPk(itemId);
+    res.json(await item.update(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Delete
+router.delete('/:itemId', async (req, res, next) => {
+  try {
+    const { itemId } = req.params;
+    const item = await Item.findByPk(itemId);
+    item.destroy();
+    res.json(item);
   } catch (error) {
     next(error);
   }
