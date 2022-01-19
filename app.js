@@ -11,9 +11,21 @@ var warehousesRouter = require('./server/routes/warehouses.js');
 
 var app = express();
 
+// const pathToSwaggerUi = require('swagger-ui-dist').absolutePath();
+
+const swaggerUi = require('swagger-ui-express');
+// const YAML = require('yamljs');
+const swaggerDocument = require('./swagger-output.json');
+
+// const swaggerDocument = YAML.load('./swagger.yaml');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// app.use(express.static(pathToSwaggerUi));
 
 app.use(logger('dev'));
 app.use(express.json());
