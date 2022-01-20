@@ -7,18 +7,16 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "Displays the home page",
         "parameters": [],
         "responses": {}
       }
     },
-    "/users/": {
+    "/items/": {
       "get": {
         "description": "",
         "parameters": [],
@@ -27,9 +25,95 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "description": "Creates a new item in the DB",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "WarehouseId": {
+                  "example": "number"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "quantity": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
-    "/items/": {
+    "/items/{itemId}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "WarehouseId": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "quantity": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/warehouses/": {
       "get": {
         "description": "",
         "parameters": [],
@@ -51,10 +135,10 @@
                 "name": {
                   "example": "any"
                 },
-                "quantity": {
+                "city": {
                   "example": "any"
                 },
-                "price": {
+                "state": {
                   "example": "any"
                 }
               }
@@ -68,10 +152,33 @@
         }
       }
     },
-    "/warehouses/": {
-      "get": {
+    "/warehouses/{itemId}": {
+      "put": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
