@@ -3,6 +3,9 @@ const { Item, Warehouse } = require('../db/models');
 
 module.exports = router;
 
+//Items CRUD
+
+//Read All
 router.get('/', async (req, res, next) => {
   try {
     const allProducts = await Item.findAll();
@@ -12,6 +15,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// Create One
 router.post('/', async (req, res, next) => {
   const { name, quantity, price } = req.body;
   try {

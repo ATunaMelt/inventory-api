@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A minimal api for inventory management",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "swagger-autogen": "node ./swagger.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,11 @@
     "morgan": "~1.9.1",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.13.0"
+    "sequelize": "^6.13.0",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.18.8"
   }
 }
