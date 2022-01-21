@@ -32,23 +32,7 @@
           {
             "name": "body",
             "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "WarehouseId": {
-                  "example": "number"
-                },
-                "name": {
-                  "example": "any"
-                },
-                "quantity": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                }
-              }
-            }
+            "schema": { "$ref": "#/components/schemas/items" }
           }
         ],
         "responses": {
@@ -71,23 +55,7 @@
           {
             "name": "body",
             "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "WarehouseId": {
-                  "example": "any"
-                },
-                "name": {
-                  "example": "any"
-                },
-                "quantity": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                }
-              }
-            }
+            "schema": { "$ref": "#/components/schemas/items" }
           }
         ],
         "responses": {
@@ -129,20 +97,7 @@
           {
             "name": "body",
             "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "city": {
-                  "example": "any"
-                },
-                "state": {
-                  "example": "any"
-                }
-              }
-            }
+            "schema": { "$ref": "#/components/schemas/warehouses" }
           }
         ],
         "responses": {
@@ -152,15 +107,20 @@
         }
       }
     },
-    "/warehouses/{itemId}": {
+    "/warehouses/{warehouseId}": {
       "put": {
         "description": "",
         "parameters": [
           {
-            "name": "itemId",
+            "name": "warehouseId",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": { "$ref": "#/components/schemas/warehouses" }
           }
         ],
         "responses": {
@@ -173,7 +133,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "itemId",
+            "name": "warehouseId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -182,6 +142,47 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "items": {
+        "type": "object",
+        "properties": {
+          "WarehouseId": {
+            "example": 1,
+            "type": "number"
+          },
+          "name": {
+            "example": "any"
+          },
+          "quantity": {
+            "example": 8000,
+            "type": "number"
+          },
+          "price": {
+            "example": 19.99,
+            "type": "number"
+          }
+        }
+      },
+      "warehouses": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "example": "Amazon2389",
+            "type": "string"
+          },
+          "city": {
+            "example": "Springfield",
+            "type": "string"
+          },
+          "state": {
+            "example": "Illinois",
+            "type": "string"
           }
         }
       }
